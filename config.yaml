@@ -12,16 +12,16 @@
    num_channels: 5
    patch_size: 16
    local_crops_scale: '0.2 0.5'
-   epochs: 100
-   momentum_teacher: 0.992
+   epochs: 10
+   momentum_teacher: 0.996
    center_momentum: 0.9
    sample_single_cells: False
    lr: 0.0005
 
  embedding:
-   pretrained_weights: /scr/mdoron/Dino4Cells/models/2022_12_27_hpa_single_cell_repro/base-with-norm-varied-masked-mom-0.996-epoch-100/checkpoint.pth
-   output_path: /scr/mdoron/Dino4Cells/models/2022_12_27_hpa_single_cell_repro/base-with-norm-varied-masked-mom-0.996-epoch-100/features.pth
-   df_path: /scr/mdoron/Dino4Cells/data/fixed_size_masked_single_cells_for_sc.csv
+   pretrained_weights: /scr/mdoron/DINO4Cells_code/output/checkpoint.pth
+   output_path: /scr/mdoron/DINO4Cells_code/output/features.pth
+   df_path: /scr/mdoron/DINO4Cells_code/cellpainting_data/sc-metadata.csv
 
    image_size: 224 
    num_workers: 0
