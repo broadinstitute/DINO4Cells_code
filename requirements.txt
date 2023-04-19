@@ -5,8 +5,8 @@ oyaml==1.0
 pandas==1.5.3
 Pillow==9.5.0
 PyYAML==6.0
-scikit_image==0.19.3
-scikit_learn==1.2.2
+scikit-image==0.19.3
+scikit-learn==1.2.2
 scipy==1.10.1
 torch==1.12.1+cu116
 torchvision==0.13.1+cu116
