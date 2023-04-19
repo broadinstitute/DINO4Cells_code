@@ -3,16 +3,16 @@
    model_type: DINO
    arch: vit_tiny
    root: ''
-   data_path: /mnt/data0/mdoron/HPA_data/whole_images_512.csv
-   output_dir: /home/unix/mdoron/Dino4Cells/supervised_vit_512/
+   data_path: /scr/mdoron/DINO4Cells_code/example.csv
+   output_dir: /scr/mdoron/DINO4Cells_code/output/
    datatype: HPA
    image_mode: normalized_4_channels
    saveckp_freq: 50
-   batch_size_per_gpu: 512
+   batch_size_per_gpu: 24
    num_channels: 4
    patch_size: 16
    local_crops_scale: '0.2 0.5'
-   epochs: 2
+   epochs: 100
    momentum_teacher: 0.992
    center_momentum: 0.9
    sample_single_cells: False
