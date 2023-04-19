@@ -1,9 +1,5 @@
-cuml_cu11==22.12.0
-harmonypy==0.0.6
 imageio==2.19.3
 kornia==0.6.8
-mantel==2.2.0
-matplotlib==3.6.3
 numpy==1.23.5
 oyaml==1.0
 pandas==1.5.3
@@ -12,8 +8,6 @@ PyYAML==6.0
 scikit_image==0.19.3
 scikit_learn==1.2.2
 scipy==1.10.1
-seaborn==0.11.2
-slurm==0.5.1
 torch==1.12.1+cu116
 torchvision==0.13.1+cu116
 tqdm==4.64.1
