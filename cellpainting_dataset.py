@@ -43,9 +43,22 @@ def fold_channels(image, channel_width, mode="drop"):
 ## Dataset Class
 ########################################################
 
+    dataset = FileList(
+        args.data_path,
+        config["model"]["root"],
+        transform=transform,
+        loader=chosen_loader,
+        flist_reader=partial(
+            file_dataset.pandas_reader_only_file,
+            sample_single_cells=args.sample_single_cells,
+        ),
+        with_labels=False,
+        balance=False,
+        sample_single_cells=args.sample_single_cells,
+    )
 class SingleCellDataset(Dataset):
     """Single cell dataset."""
-    def __init__(self, csv_file, root_dir, transform=None):
+    def __init__(self, csv_file, root_dir, transform=None, loader=None, flist_reader=None, with_labels=None, balance=None, sample_single_cells=None):
         """
         Args:
             csv_file (string): Path to the csv file with metadata.
@@ -64,10 +77,11 @@ class SingleCellDataset(Dataset):
     def __getitem__(self, idx):
         if torch.is_tensor(idx):
             idx = idx.tolist()
+            print(idx)
 
         img_name = os.path.join(self.root_dir,
                                 self.metadata.loc[idx, "Image_Name"])
-        channel_width = self.metadata.iloc[idx, 'channel_width']
+        channel_width = self.metadata.loc[idx, 'channel_width']
         image = skimage.io.imread(img_name)
         image = fold_channels(image, channel_width)
 
