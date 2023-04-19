@@ -2,14 +2,14 @@
  model:
    model_type: DINO
    arch: vit_tiny
-   root: ''
-   data_path: /scr/mdoron/DINO4Cells_code/example.csv
+   root: /scr/mdoron/DINO4Cells_code/cellpainting_data/
+   data_path: /scr/mdoron/DINO4Cells_code/cellpainting_data/sc-metadata.csv
    output_dir: /scr/mdoron/DINO4Cells_code/output/
-   datatype: HPA
+   datatype: CellPainting
    image_mode: normalized_4_channels
    saveckp_freq: 50
    batch_size_per_gpu: 24
-   num_channels: 4
+   num_channels: 5
    patch_size: 16
    local_crops_scale: '0.2 0.5'
    epochs: 100
