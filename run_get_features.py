@@ -214,11 +214,11 @@ if __name__ == "__main__":
         pin_memory=True,
     )
 
+    labels = None
     all_classes = []
     protein_locations = []
     cell_types = []
     all_features = None
-    all_features = torch.zeros(len(dataset), 768)
     all_IDs = []
     all_impaths = []
     i = 0
@@ -226,15 +226,11 @@ if __name__ == "__main__":
     # Main feature extraction loop
     for record in tqdm(data_loader):
         # Decode record
-        if config["embedding"]["embedding_has_labels"]:
-            images, protein_location, cell_type, ID = record
-        else:
-            images, ID, impath = record
-
-        # TODO: move this logic to image_mode
-        if config["model"]["model_type"] in wair_model_name_list:
-            images = images[:, :3, :, :]
-
+        if labels is None:
+            labels = [[] for s in record[1:]]
+        for ind, label in enumerate(record[1:]):
+            labels[ind].extend(record[1 + ind])
+        images = record[0]
         # Run model
         if isinstance(images, list):
             # Compatibility for crops and multi-views
@@ -247,34 +243,16 @@ if __name__ == "__main__":
             # Single image
             with torch.no_grad():
                 features = model(images.to(device))
-
         # Append features
+        if all_features == None:
+            all_features = torch.zeros(len(dataset), features.shape[1])
         all_features[i : i + len(features), :] = features.detach().cpu()
         i += len(features)
-        del features
-
-        # Append metadata
-        all_IDs.extend(ID)
-        if config["embedding"]["embedding_has_labels"]:
-            cell_types.extend(cell_type)
-            protein_locations.extend(protein_location)
-        else:
-            all_impaths.extend(impath)
-
-        if config["embedding"]["embedding_has_labels"]:
-            del images, protein_location, cell_type, ID
-        else:
-            del images, ID, impath
+        del images, record, features
 
     # Save results
+    result = [all_features]
+    for l in labels:
+        result.append(l)
     if config["embedding"]["embedding_has_labels"]:
-        torch.save(
-            (all_features, protein_locations, cell_types, all_IDs),
-            output_path,
-        )
-    else:
-        torch.save(
-            (all_features, all_impaths, all_IDs),
-            output_path,
-        )
-        # torch.save((all_features, all_IDs), f'{config["embedding"]["output_path"]}')
+        torch.save(result, output_path)

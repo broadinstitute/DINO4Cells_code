@@ -58,16 +58,16 @@ def fold_channels(image, channel_width, mode="drop"):
     )
 class SingleCellDataset(Dataset):
     """Single cell dataset."""
-    def __init__(self, csv_file, root_dir, transform=None, loader=None, flist_reader=None, with_labels=None, balance=None, sample_single_cells=None):
+    def __init__(self, csv_file, root, transform=None, loader=None, flist_reader=None, with_labels=None, balance=None, sample_single_cells=None, training=None, target_labels=None):
         """
         Args:
             csv_file (string): Path to the csv file with metadata.
-            root_dir (string): Directory with all the images.
+            root (string): Directory with all the images.
             transform (callable, optional): Optional transform to be applied
                 on a sample.
         """
         self.metadata = pd.read_csv(csv_file)
-        self.root_dir = root_dir
+        self.root = root
         self.transform = transform
 
     def __len__(self):
@@ -79,7 +79,7 @@ class SingleCellDataset(Dataset):
             idx = idx.tolist()
             print(idx)
 
-        img_name = os.path.join(self.root_dir,
+        img_name = os.path.join(self.root,
                                 self.metadata.loc[idx, "Image_Name"])
         channel_width = self.metadata.loc[idx, 'channel_width']
         image = skimage.io.imread(img_name)

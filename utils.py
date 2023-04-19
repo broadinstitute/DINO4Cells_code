@@ -33,7 +33,7 @@ import torch.nn.functional as F
 from torchvision import transforms
 from skimage.filters import threshold_otsu
 from PIL import Image, ImageFilter, ImageOps
-import cuml
+# import cuml
 from sklearn.linear_model import LogisticRegression
 from tqdm import tqdm
 import torch
@@ -50,7 +50,6 @@ from scipy.cluster.hierarchy import dendrogram, linkage, fcluster
 from scipy.spatial.distance import pdist, cdist
 from seaborn import clustermap
 from scipy.spatial.distance import squareform
-import cuml
 from sklearn.metrics import average_precision_score
 import pandas as pd
 from skimage import io
@@ -82,8 +81,8 @@ from file_dataset import AutoBalancedPrecomputedFeatures
 from random import choices
 from sklearn.cluster import DBSCAN
 import matplotlib.patches as patches
-import mantel
-import harmonypy as hm
+# import mantel
+# import harmonypy as hm
 
 cmap = cm.nipy_spectral
 
