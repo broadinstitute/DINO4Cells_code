@@ -29,3 +29,7 @@ This repo will contain the code for training DINO models and extracting features
 ### Config files:
 * Example config file for each dataset
 
+## Running example
+
+### Train dino
+python run_dino.py --config config.yaml --gpus 0,1,2,3
