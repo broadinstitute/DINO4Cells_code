@@ -11,7 +11,6 @@
    batch_size_per_gpu: 24
    num_channels: 5
    patch_size: 16
-   local_crops_scale: '0.2 0.5'
    epochs: 10
    momentum_teacher: 0.996
    center_momentum: 0.9
@@ -22,84 +21,9 @@
    pretrained_weights: /scr/mdoron/DINO4Cells_code/output/checkpoint.pth
    output_path: /scr/mdoron/DINO4Cells_code/output/features.pth
    df_path: /scr/mdoron/DINO4Cells_code/cellpainting_data/sc-metadata.csv
-
    image_size: 224 
    num_workers: 0
    embedding_has_labels: True
-   num_augmentation_repetitions: 0
-
- plot_embedding:
-   output_name: /home/unix/mdoron/Dino4Cells/supervised_vit_512/ 
-
- kaggle_test_data:
-   averaged_features: False
-   df_path: /scr/mdoron/Dino4Cells/data/HPA_single_cell_data_fixed_masked_test.csv
-   pretrained_weights: /scr/mdoron/Dino4Cells/models/2022_12_27_hpa_single_cell_repro/base-with-norm-varied-masked-mom-0.996-epoch-100/checkpoint.pth
-   whole_image_train_features_path: /scr/mdoron/Dino4Cells/models/2022_12_27_hpa_single_cell_repro/base-with-norm-varied-masked-mom-0.996-epoch-100/features.pth
-   whole_image_kaggle_features_path: /scr/mdoron/Dino4Cells/models/2022_12_27_hpa_single_cell_repro/base-with-norm-varied-masked-mom-0.996-epoch-100/test_features.pth
-   whole_image_classifier: /scr/mdoron/Dino4Cells/models/whole_image_model/protein_classifier.pth
-   whole_image_train_statistics: /scr/mdoron/Dino4Cells/models/whole_image_model/balanced_statistics.npy
-   submission_path: /scr/mdoron/Dino4Cells/models/2022_12_27_hpa_single_cell_repro/base-with-norm-varied-masked-mom-0.996-epoch-100/submission.csv
-   num_workers: 0
-
- classification:
-   early_stopping: -1
-   averaged_features_path: /scr/mdoron/Dino4Cells/models/2022_12_27_hpa_single_cell_repro/base-with-norm-varied-masked-mom-0.996-epoch-100/averaged_features.pth
-   averaged_train_path: /scr/mdoron/Dino4Cells/models/2022_12_27_hpa_single_cell_repro/base-with-norm-varied-masked-mom-0.996-epoch-100/train_averaged_features.pth
-   averaged_valid_path: /scr/mdoron/Dino4Cells/models/2022_12_27_hpa_single_cell_repro/base-with-norm-varied-masked-mom-0.996-epoch-100/valid_averaged_features.pth
-   averaged_test_path: /scr/mdoron/Dino4Cells/models/2022_12_27_hpa_single_cell_repro/base-with-norm-varied-masked-mom-0.996-epoch-100/test_averaged_features.pth
-   cells_train_path: /scr/mdoron/Dino4Cells/models/2022_12_27_hpa_single_cell_repro/base-with-norm-varied-masked-mom-0.996-epoch-100/train_features_cells.pth
-   cells_valid_path: /scr/mdoron/Dino4Cells/models/2022_12_27_hpa_single_cell_repro/base-with-norm-varied-masked-mom-0.996-epoch-100/valid_features_cells.pth
-   train_path: /scr/mdoron/Dino4Cells/models/2022_12_27_hpa_single_cell_repro/base-with-norm-varied-masked-mom-0.996-epoch-100/train_features.pth
-   valid_path: /scr/mdoron/Dino4Cells/models/2022_12_27_hpa_single_cell_repro/base-with-norm-varied-masked-mom-0.996-epoch-100/valid_features.pth
-   test_path: /scr/mdoron/Dino4Cells/models/2022_12_27_hpa_single_cell_repro/base-with-norm-varied-masked-mom-0.996-epoch-100/test_features.pth
-   whole_image_submission_file: /scr/mdoron/Dino4Cells/models/whole_image_model/whole_image_submission.csv
-   competition_type: single_cells
-   use_pretrained_features: True
-   prepare_kaggle_submission: False
-   train_classifier_head: True
-   whole_images: False
-   feature_extractor_state_dict: null
-   classifier_state_dict: /scr/mdoron/Dino4Cells/results/hpa_single_cell_repro/classifier_final_protein.pth
-   load_classifier_head: False
-   train_feature_extractor: False
-   epochs: 100
-   num_workers: 10
-   batch_size_per_gpu: 512
-   dropout: 0.5
-   lr: 0.0001
-   min_lr: 1e-6
-   wd: 0.04
-   overwrite: True
-   wd_end: 0.4
-   n_layers: 2
-   schedule: Cosine
-   n_units: 1024
-   skip: False
-   balance: True
-   optimizer: AdamW
-   protein_classifier: /home/unix/mdoron/Dino4Cells/supervised_vit_512/protein_classifier.pth 
-   cell_type_classifier: /home/unix/mdoron/Dino4Cells/supervised_vit_512/cell_type_classifier.pth
-   classifier_type: simple_clf
-   num_classes: 19
-   # loss: focal_loss
-   loss: BCEWithLogitsLoss
-   balance: True
-   train_statistics: /home/unix/mdoron/Dino4Cells/supervised_vit_512/balanced_statistics.npy
-   protein_task: full
-   train_protein: False
-   train_cell_type: True
-   use_pretrained_cell_type_classifier: false
-   use_pretrained_repro_classifier: false
-   averaged_features: /home/unix/mdoron/Dino4Cells/supervised_vit_512/features.pth
-   training_features_paths_list:
-     - /home/unix/mdoron/Dino4Cells/supervised_vit_512/features.pth
-   verbose: true
-   output_dir: /scr/mdoron/Dino4Cells/results/
-   output_prefix: hpa_single_cell_repro
-
- visualize:
-   image_path: '/mnt/data0/mdoron/Dino4Cells/datasets/HPA/data/75112_1646_F7_1_blue.jpg'
 
  flip_and_color_jitter_transforms: 
    RandomRotation: 
@@ -491,12 +415,3 @@
    rnd_dihedral:
     - False
     - # no params
-
- pipeline:
-   run_DINO: false
-   run_get_features: true
-   run_plot_embeddings: false
-   run_classification: false
-   run_visualize: false
-   run_get_features_kaggle: false
-   run_classify_kaggle_test: false
