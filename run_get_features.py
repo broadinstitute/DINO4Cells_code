@@ -5,7 +5,6 @@ import random
 import colorsys
 from io import BytesIO
 from sklearn.preprocessing import StandardScaler
-import file_dataset
 from tqdm import tqdm
 import skimage.io
 import matplotlib.pyplot as plt
@@ -16,15 +15,15 @@ import torch.nn as nn
 import torchvision
 from torchvision import datasets, transforms
 from tqdm import tqdm
-import utils
-import vision_transformer as vits
-from archs import xresnet as cell_models  # (!)
-from vision_transformer import DINOHead
 from pathlib import Path
 import yaml
 from functools import partial  # (!)
-from yaml_tfms import tfms_from_config
-from label_dict import protein_to_num_full, protein_to_num_single_cells
+from utils.yaml_tfms import tfms_from_config
+import utils.utils
+import utils.vision_transformer as vits
+from archs import xresnet as cell_models  # (!)
+from utils.vision_transformer import DINOHead
+from utils import file_dataset
 
 try:
     from get_wair_model import get_wair_model

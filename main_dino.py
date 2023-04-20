@@ -31,14 +31,14 @@ import torch.nn.functional as F
 from torchvision import datasets, transforms
 from torchvision import models as torchvision_models
 
-import utils
-from slurm import trigger_job_requeue, init_signal_handler
-import file_dataset
+from  utils import utils
+from utils.slurm import trigger_job_requeue, init_signal_handler
+from  utils import file_dataset
 from functools import partial
 from archs import xresnet as cell_models
-import vision_transformer as vits
-from vision_transformer import DINOHead
-from yaml_tfms import tfms_from_config
+from utils import vision_transformer as vits
+from utils.vision_transformer import DINOHead
+from utils.yaml_tfms import tfms_from_config
 
 
 torchvision_archs = sorted(
