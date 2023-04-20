@@ -34,13 +34,10 @@ from torchvision import models as torchvision_models
 import utils
 from slurm import trigger_job_requeue, init_signal_handler
 import file_dataset
-
 from functools import partial
 from archs import xresnet as cell_models
-from cell_dataset import dino_dataset
 import vision_transformer as vits
 from vision_transformer import DINOHead
-
 from yaml_tfms import tfms_from_config
 
 

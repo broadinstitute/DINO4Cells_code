@@ -1,27 +1,20 @@
 import os
 import sys
 import argparse
-
 import random
 import colorsys
 from io import BytesIO
 from sklearn.preprocessing import StandardScaler
-
 import file_dataset
-from cell_dataset import dino_dataset
-
 from tqdm import tqdm
 import skimage.io
-from skimage.measure import find_contours
 import matplotlib.pyplot as plt
 from matplotlib import cm
-from matplotlib.patches import Polygon
 import torch
 from torch.nn import DataParallel
 import torch.nn as nn
 import torchvision
 from torchvision import datasets, transforms
-from PIL import Image
 from tqdm import tqdm
 import utils
 import vision_transformer as vits
@@ -188,22 +181,19 @@ if __name__ == "__main__":
     else:
         target_labels = sorted(list(protein_to_num_single_cells.keys()))
 
-    if config["model"]["datatype"] == "CellNet":
-        dataset = dino_dataset(dataset_path, transform=transform, training=False)
-    else:
-        dataset = FileList(
-            dataset_path,
-            transform=transform,
-            flist_reader=reader,
-            balance=False,
-            loader=loader,
-            training=False,
-            with_labels=config["embedding"]["embedding_has_labels"],
-            root=config["model"]["root"],
-            # The target labels are the column names of the protein localizationsm
-            # used to create the multilabel target matrix
-            target_labels=target_labels,
-        )
+    dataset = FileList(
+        dataset_path,
+        transform=transform,
+        flist_reader=reader,
+        balance=False,
+        loader=loader,
+        training=False,
+        with_labels=config["embedding"]["embedding_has_labels"],
+        root=config["model"]["root"],
+        # The target labels are the column names of the protein localizationsm
+        # used to create the multilabel target matrix
+        target_labels=target_labels,
+    )
 
     sampler = torch.utils.data.SequentialSampler(dataset)
     data_loader = torch.utils.data.DataLoader(
@@ -215,13 +205,8 @@ if __name__ == "__main__":
     )
 
     labels = None
-    all_classes = []
-    protein_locations = []
-    cell_types = []
     all_features = None
-    all_IDs = []
-    all_impaths = []
-    i = 0
+    running_index = 0
 
     # Main feature extraction loop
     for record in tqdm(data_loader):
@@ -235,7 +220,7 @@ if __name__ == "__main__":
         if isinstance(images, list):
             # Compatibility for crops and multi-views
             with torch.no_grad():
-                f = torch.stack([model(i.to(device)) for i in images])
+                f = torch.stack([model(img.to(device)) for img in images])
                 f = torch.transpose(f, 0, 1)
                 features = torch.reshape(f, (f.shape[0], f.shape[1] * f.shape[2]))
                 del f
@@ -246,8 +231,8 @@ if __name__ == "__main__":
         # Append features
         if all_features == None:
             all_features = torch.zeros(len(dataset), features.shape[1])
-        all_features[i : i + len(features), :] = features.detach().cpu()
-        i += len(features)
+        all_features[running_index : running_index + len(features), :] = features.detach().cpu()
+        running_index += len(features)
         del images, record, features
 
     # Save results
