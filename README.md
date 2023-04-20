@@ -7,9 +7,13 @@ pip install torch==1.12.1+cu116 torchvision==0.13.1+cu116 torchaudio==0.12.1 --e
 
 pip install -r requirements.py
 
+## Running example
 
+### Train dino
+python run_dino.py --config config.yaml --gpus 0,1,2,3
+### Extract features
+python run_get_features.py --config config.yaml
 
-# Repo layout
 
 ## External data to report
 * HPA whole images
@@ -22,24 +26,3 @@ pip install -r requirements.py
 * DINO weights for WTC11
 * HPA filtered single cells
 * HPA normalized images
-## Code necessary for training and feature extraction
-### Running scripts:
-* main_dino.py
-* run_get_features.py
-### Utilization files:
-* utils.py
-* run_get_kaggle_test_features.py
-* file_dataset.py
-* cell_dataset.py
-* vision_transformer.py
-* label_dict.py
-* yaml_tfms.py
-### Config files:
-* Example config file for each dataset
-
-## Running example
-
-### Train dino
-python run_dino.py --config config.yaml --gpus 0,1,2,3
-### Extract features
-python run_get_features.py --config config.yaml
