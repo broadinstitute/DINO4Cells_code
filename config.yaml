@@ -16,6 +16,7 @@
    center_momentum: 0.9
    sample_single_cells: False
    lr: 0.0005
+   local_crops_scale: '0.2 0.5'
 
  embedding:
    pretrained_weights: /scr/mdoron/DINO4Cells_code/output/checkpoint.pth
@@ -24,6 +25,7 @@
    image_size: 224 
    num_workers: 0
    embedding_has_labels: True
+   target_labels: False
 
  flip_and_color_jitter_transforms: 
    RandomRotation: 

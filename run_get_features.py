@@ -176,11 +176,6 @@ if __name__ == "__main__":
 
     FileList = file_dataset.data_loaders[config["model"]["datatype"]]
 
-    if config["classification"]["whole_images"] or args.whole:
-        target_labels = sorted(list(protein_to_num_full.keys()))
-    else:
-        target_labels = sorted(list(protein_to_num_single_cells.keys()))
-
     dataset = FileList(
         dataset_path,
         transform=transform,
@@ -192,7 +187,7 @@ if __name__ == "__main__":
         root=config["model"]["root"],
         # The target labels are the column names of the protein localizationsm
         # used to create the multilabel target matrix
-        target_labels=target_labels,
+        target_labels=config['embedding']['target_labels'],
     )
 
     sampler = torch.utils.data.SequentialSampler(dataset)
@@ -239,5 +234,4 @@ if __name__ == "__main__":
     result = [all_features]
     for l in labels:
         result.append(l)
-    if config["embedding"]["embedding_has_labels"]:
-        torch.save(result, output_path)
+    torch.save(result, output_path)

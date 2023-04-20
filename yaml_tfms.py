@@ -3,7 +3,7 @@ import argparse
 import sys
 from torchvision import datasets, transforms
 from torchvision.transforms import *
-from utils import *
+from augmentations import *
 
 
 def get_args_parser():
