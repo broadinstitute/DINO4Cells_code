@@ -3,13 +3,8 @@ This repo will contain the code for training DINO models and extracting features
 
 ## Installation
 
+pip install torch==1.12.1+cu116 torchvision==0.13.1+cu116 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu116
 pip install -r requirements.py
-
-pip install cudf-cu11 dask-cudf-cu11 --extra-index-url=https://pypi.nvidia.com
-
-pip install cuml-cu11 --extra-index-url=https://pypi.nvidia.com
-
-pip install cugraph-cu11 --extra-index-url=https://pypi.nvidia.com
 
 
 
@@ -45,3 +40,5 @@ pip install cugraph-cu11 --extra-index-url=https://pypi.nvidia.com
 
 ### Train dino
 python run_dino.py --config config.yaml --gpus 0,1,2,3
+### Extract features
+python run_get_features.py --config config.yaml
