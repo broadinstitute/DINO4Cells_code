@@ -21,11 +21,18 @@
  embedding:
    pretrained_weights: /home/michaeldoron/dino_example/output/checkpoint.pth
    output_path: /home/michaeldoron/dino_example/features.pth
-   df_path: /home/michaeldoron/dino_example/sc-metadata.csv
+   df_path: /home/michaeldoron/dino_example/metadata.csv 
    image_size: 224 
    num_workers: 0
    embedding_has_labels: True
-   target_labels: False
+   target_labels: ['actin filaments,focal adhesion sites', 'aggresome',
+       'centrosome,centriolar satellite', 'cytosol', 'endoplasmic reticulum',
+       'golgi apparatus', 'intermediate filaments', 'microtubules',
+       'mitochondria', 'mitotic spindle', 'no staining', 'nuclear bodies',
+       'nuclear membrane', 'nuclear speckles', 'nucleoli',
+       'nucleoli fibrillar center', 'nucleoplasm',
+       'plasma membrane,cell junctions',
+       'vesicles,peroxisomes,endosomes,lysosomes,lipid droplets,cytoplasmic bodies',]
 
  flip_and_color_jitter_transforms: 
    RandomRotation: 

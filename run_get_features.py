@@ -20,10 +20,10 @@ import yaml
 from functools import partial  # (!)
 from utils.yaml_tfms import tfms_from_config
 import utils.utils
-import utils.vision_transformer as vits
+import archs.vision_transformer as vits
 from archs import xresnet as cell_models  # (!)
-from utils.vision_transformer import DINOHead
-from utils import file_dataset
+from archs.vision_transformer import DINOHead
+from data_utils import file_dataset
 
 try:
     from get_wair_model import get_wair_model
@@ -186,7 +186,7 @@ if __name__ == "__main__":
         root=config["model"]["root"],
         # The target labels are the column names of the protein localizationsm
         # used to create the multilabel target matrix
-        target_labels=config['embedding']['target_labels'],
+        target_labels=config["embedding"]["target_labels"],
     )
 
     sampler = torch.utils.data.SequentialSampler(dataset)
@@ -225,7 +225,9 @@ if __name__ == "__main__":
         # Append features
         if all_features == None:
             all_features = torch.zeros(len(dataset), features.shape[1])
-        all_features[running_index : running_index + len(features), :] = features.detach().cpu()
+        all_features[
+            running_index : running_index + len(features), :
+        ] = features.detach().cpu()
         running_index += len(features)
         del images, record, features
 
