@@ -1,8 +1,12 @@
+```{tableofcontents}
+```
+
 # Dino4cells handbook
 
 Dino4cells is a self-supervised method to extract phenotypic information of single cells from their morphology by training unbiased representation learning models on their microscopy images. This guide describes how to install dino4cells, and how to run it on an example small dataset. After completing this guidebook, you should have a good understanding of how to use dino4cells in your own research. 
 
-Dino4cells is an extention of [DINO](https://github.com/facebookresearch/dino), or self-DIstilation with NO labels, published by Meta-AI. 
+Dino4cells is an extention of [DINO](https://github.com/facebookresearch/dino), or self-DIstilation with NO labels, published by Meta-AI. A demonstration of its abilities is presented in the paper [Unbiased single-cell morphology with self-supervised vision transformers](https://www.biorxiv.org/content/10.1101/2023.06.16.545359v1).
+
 
 ## Installation
 
