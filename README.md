@@ -4,7 +4,7 @@ This repo will contain the code for training DINO models and extracting features
 
 For the code to reproduce the results of the paper, go to https://github.com/broadinstitute/Dino4Cells_analysis.
 
-A more thorough documentation can be found (here)[https://broadinstitute.github.io/DINO4Cells_code/].
+A more thorough documentation can be found [here](https://broadinstitute.github.io/DINO4Cells_code/).
 
 ## Installation
 
