@@ -4,6 +4,8 @@ This repo will contain the code for training DINO models and extracting features
 
 For the code to reproduce the results of the paper, go to https://github.com/broadinstitute/Dino4Cells_analysis.
 
+A more thorough documentation can be found (here)[https://broadinstitute.github.io/DINO4Cells_code/].
+
 ## Installation
 
 pip install torch==1.12.1+cu116 torchvision==0.13.1+cu116 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu116
