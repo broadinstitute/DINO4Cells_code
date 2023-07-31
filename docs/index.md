@@ -38,7 +38,7 @@ Next, if you want to use the features for, e.g., predicting some quantity of int
 
 ## Example training
 
-For this example, we assume we have a dataset of 10,000 FOV images of cells. We wish to train an unbiased feature extractror to explore the structure of the data. To do this, we should first prepare a configuration file that will contain the parapeters DINO will use to train:
+For this example, we assume we have a dataset of 15188 images of single cells. We wish to train an unbiased feature extractror to explore the structure of the data. To do this, we should first prepare a configuration file that will contain the parapeters DINO will use to train:
 
 Inside `config.yaml`:
 
