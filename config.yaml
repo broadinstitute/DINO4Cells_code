@@ -2,14 +2,14 @@
  model:
    model_type: DINO
    arch: vit_tiny
-   root: /scr/mdoron/DINO4Cells_code/cellpainting_data/
-   data_path: /scr/mdoron/DINO4Cells_code/cellpainting_data/sc-metadata.csv
-   output_dir: /scr/mdoron/DINO4Cells_code/output/
-   datatype: CellPainting
+   root: /home/michaeldoron/dino_example/single_cells_data/
+   data_path: /home/michaeldoron/dino_example/metadata.csv
+   output_dir: /home/michaeldoron/dino_example/output/
+   datatype: HPA
    image_mode: normalized_4_channels
    saveckp_freq: 50
    batch_size_per_gpu: 24
-   num_channels: 5
+   num_channels: 4
    patch_size: 16
    epochs: 10
    momentum_teacher: 0.996
@@ -19,9 +19,9 @@
    local_crops_scale: '0.2 0.5'
 
  embedding:
-   pretrained_weights: /scr/mdoron/DINO4Cells_code/output/checkpoint.pth
-   output_path: /scr/mdoron/DINO4Cells_code/output/features.pth
-   df_path: /scr/mdoron/DINO4Cells_code/cellpainting_data/sc-metadata.csv
+   pretrained_weights: /home/michaeldoron/dino_example/output/checkpoint.pth
+   output_path: /home/michaeldoron/dino_example/features.pth
+   df_path: /home/michaeldoron/dino_example/sc-metadata.csv
    image_size: 224 
    num_workers: 0
    embedding_has_labels: True

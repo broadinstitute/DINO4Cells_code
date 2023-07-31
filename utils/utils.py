@@ -686,5 +686,3 @@ def has_batchnorms(model):
         if isinstance(module, bn_types):
             return True
     return False
-
-

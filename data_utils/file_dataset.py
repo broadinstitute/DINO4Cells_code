@@ -9,7 +9,7 @@ from skimage import io
 from pathlib import Path
 from functools import partial
 from sklearn.preprocessing import StandardScaler
-from utils import cellpainting_dataset
+from data_utils import cellpainting_dataset
 
 
 t = torchvision.transforms.ToTensor()
