@@ -38,7 +38,7 @@ Next, if you want to use the features for, e.g., predicting some quantity of int
 
 ## Example training
 
-For this example, we assume we have a dataset of 15188 images of single cells. We wish to train an unbiased feature extractror to explore the structure of the data. To do this, we should first prepare a configuration file that will contain the parapeters DINO will use to train:
+For this example, we assume we have a dataset of 15188 images of single cells, that can be downloaded from [here](https://zenodo.org/record/8198252). We wish to train an unbiased feature extractror to explore the structure of the data. To do this, we should first prepare a configuration file that will contain the parapeters DINO will use to train:
 
 Inside `config.yaml`:
 
@@ -55,7 +55,7 @@ Inside `config.yaml`:
      batch_size_per_gpu: 24
      num_channels: 4
      patch_size: 16
-     epochs: 10
+     epochs: 100
      momentum_teacher: 0.996
      center_momentum: 0.9
      lr: 0.0005
@@ -116,6 +116,8 @@ For example:
 means that the global views has the Warp_cell augmentation active, the single_cell_centering augmentation not active, and the remove_channel augmentation active, with a probability of 20% activation.
 
 After the config file is set, we can train our DINO model on the data by running `python run_dino.py --config config.yaml --gpus 0,1`, where the `--gpus` argument determines which GPUs are used in training. 
+
+On a single 3090 GPU, training DINO on 15k images should take about 3.5 hours.
 
 
 ## Example extraction
